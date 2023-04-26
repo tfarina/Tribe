@@ -2,6 +2,8 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Tribe"
+#define MyAppRootDirectory "..\.."
+#define MyAppOutputDirectory MyAppRootDirectory + "\Output"
 #define MyAppVersion "0.1"
 #define MyAppExeName "tribe.exe"
 
@@ -15,7 +17,7 @@ AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
-OutputDir=..\..\Release
+OutputDir={#MyAppOutputDirectory}
 OutputBaseFilename=Tribe-{#MyAppVersion}-Setup
 Compression=lzma
 SolidCompression=yes
