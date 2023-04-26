@@ -100,7 +100,7 @@ WinMain(
 	HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine,
-    int nCmdShow
+	int nCmdShow
 	)
 {
 	MSG msg;
@@ -690,6 +690,17 @@ MainWndProc(
 				case IDC_TB_NEW:
 				case IDM_NEW_CONTACT:
 					ShowContactPropertiesDialog(hWnd);
+					break;
+
+				case IDC_TB_DELETE:
+					{
+						TCHAR szBuf[] = TEXT("Are you sure you want to delete the selected item(s)?");
+						TCHAR szCaption[] = TEXT("Confirm Item Delete");
+						if (MessageBox(hWnd, szBuf, szCaption, MB_ICONQUESTION | MB_YESNO) == IDYES)
+						{
+							ListView_DeleteItem(g_hwndListView, 0);
+						}
+					}
 					break;
 
 				case IDM_EXIT:
