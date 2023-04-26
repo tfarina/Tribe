@@ -18,7 +18,7 @@ AppVersion={#MyAppVersion}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 OutputDir={#MyAppOutputDirectory}
-OutputBaseFilename=Tribe-{#MyAppVersion}-Setup
+OutputBaseFilename={#MyAppName}-{#MyAppVersion}-Setup
 Compression=lzma
 SolidCompression=yes
 
