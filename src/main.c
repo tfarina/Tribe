@@ -694,11 +694,15 @@ MainWndProc(
 
 				case IDC_TB_DELETE:
 					{
-						TCHAR szBuf[] = TEXT("Are you sure you want to delete the selected item(s)?");
+						TCHAR szBuf[MAX_LOADSTRING];
 						TCHAR szCaption[] = TEXT("Confirm Item Delete");
-						int iSelIndex;
+
+						LoadString(g_hInst, IDS_CONFIRM_DELETE_ITEM_MSG, szBuf, MAX_LOADSTRING);
+
 						if (MessageBox(hWnd, szBuf, szCaption, MB_ICONQUESTION | MB_YESNO) == IDYES)
 						{
+							int iSelIndex;
+
 							iSelIndex = ListView_GetNextItem(g_hwndListView, -1, LVNI_SELECTED);
 							if (iSelIndex != -1)
 							{
