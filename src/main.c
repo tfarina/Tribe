@@ -693,6 +693,7 @@ MainWndProc(
 					break;
 
 				case IDC_TB_DELETE:
+				case IDM_DELETE:
 					{
 						TCHAR szBuf[MAX_LOADSTRING];
 						TCHAR szCaption[] = TEXT("Confirm Item Delete");
