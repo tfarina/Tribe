@@ -30,7 +30,7 @@ typedef struct _CONTACT
 /* Global Variables */
 HINSTANCE g_hInst;     /* Handle to module instance */
 
-HWND g_hwndWP;         /* Handle to main window */
+HWND g_hwndMain;         /* Handle to main window */
 HWND g_hwndStatusBar;  
 HWND g_hwndListView;
 HWND g_hwndToolbar;
@@ -147,7 +147,7 @@ WinMain(
 	/* Main Message Loop */
 	while (GetMessage(&msg, NULL, 0, 0)) 
 	{
-		if (!TranslateAccelerator(g_hwndWP, hAccelTable, &msg)) 
+		if (!TranslateAccelerator(g_hwndMain, hAccelTable, &msg)) 
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
@@ -226,7 +226,7 @@ CreateMainWindow(
 	hMenu = LoadMenu(hInstance, MAKEINTRESOURCE(IDR_MENUBAR));
 
 	/* Create the main window for this application instance. */
-	g_hwndWP = CreateWindowEx(
+	g_hwndMain = CreateWindowEx(
 		0,
 		g_szClassName,
 		szTitle,
@@ -240,13 +240,13 @@ CreateMainWindow(
 		hInstance,
 		NULL);
 
-	if (!g_hwndWP)
+	if (!g_hwndMain)
 	{
 		return FALSE;
 	}
 
-	ShowWindow(g_hwndWP, nCmdShow);
-	UpdateWindow(g_hwndWP);
+	ShowWindow(g_hwndMain, nCmdShow);
+	UpdateWindow(g_hwndMain);
 
 	return TRUE;
 }
@@ -629,7 +629,7 @@ UpdateMenuStates(
 	)
 {
 	int numSelected = ListView_GetSelectedCount(g_hwndListView);
-	HMENU hMenu = GetSubMenu(GetMenu(g_hwndWP), 0);
+	HMENU hMenu = GetSubMenu(GetMenu(g_hwndMain), 0);
 	BOOL canDelete = numSelected > 0 ? TRUE : FALSE;
 	UINT uFlag = canDelete ? MF_ENABLED : MF_GRAYED;
 
