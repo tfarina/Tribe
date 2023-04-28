@@ -1,0 +1,12 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=tribe.chm
+Contents file=tribe.hhc
+Default topic=introduction.htm
+Display compile progress=No
+Index file=tribe.hhk
+Language=0x409 English (United States)
+
+
+[INFOTYPES]
+
