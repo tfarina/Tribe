@@ -696,9 +696,14 @@ MainWndProc(
 					{
 						TCHAR szBuf[] = TEXT("Are you sure you want to delete the selected item(s)?");
 						TCHAR szCaption[] = TEXT("Confirm Item Delete");
+						int iSelIndex;
 						if (MessageBox(hWnd, szBuf, szCaption, MB_ICONQUESTION | MB_YESNO) == IDYES)
 						{
-							ListView_DeleteItem(g_hwndListView, 0);
+							iSelIndex = ListView_GetNextItem(g_hwndListView, -1, LVNI_SELECTED);
+							if (iSelIndex != -1)
+							{
+								ListView_DeleteItem(g_hwndListView, iSelIndex);
+							}
 						}
 					}
 					break;
