@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <windowsx.h>
 #include <commctrl.h>
+#include <htmlhelp.h>
 
 /* C RunTime Header Files */
 #include <stdio.h>
@@ -733,6 +734,21 @@ MainWndProc(
 						ShowWindow(g_hwndStatusBar, SW_NORMAL);
 					}
 					AdjustChildrenControls(hWnd);
+					break;
+
+				case IDM_HELP_CHM:
+					{
+						TCHAR szExeFullPath[MAX_PATH] = _T("");
+						LPTSTR pszProcessName;
+
+						/* Construct the process' working directory */
+						GetModuleFileName(NULL, szExeFullPath, MAX_PATH);
+						pszProcessName = _tcsrchr(szExeFullPath, _T('\\')) + 1; /* The +1 removes the backslash */
+						*pszProcessName = _T('\0'); /* Erase the filename.exe from szExeFullPath */
+						_tcscat(szExeFullPath, _T("tribe.chm"));
+
+						HtmlHelp(GetDesktopWindow(), szExeFullPath, HH_DISPLAY_TOPIC, 0);
+					}
 					break;
 
 				case IDM_ABOUT:

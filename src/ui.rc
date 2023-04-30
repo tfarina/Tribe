@@ -59,6 +59,8 @@ BEGIN
     END
     POPUP "&Help"
     BEGIN
+        MENUITEM "&Contents and Index\tF1",     IDM_HELP_CHM
+        MENUITEM SEPARATOR
         MENUITEM "&About Tribe",                IDM_ABOUT
     END
 END
@@ -73,8 +75,9 @@ IDR_MAINWND_ACCEL ACCELERATORS
 BEGIN
     "/",            IDM_ABOUT,              ASCII,  ALT, NOINVERT
     "?",            IDM_ABOUT,              ASCII,  ALT, NOINVERT
-    "A",            IDM_SELECTALL,          VIRTKEY, CONTROL, NOINVERT
     "N",            IDM_NEW_CONTACT,        VIRTKEY, CONTROL, NOINVERT
+    "A",            IDM_SELECTALL,          VIRTKEY, CONTROL, NOINVERT
+    VK_F1,          IDM_HELP_CHM,           VIRTKEY, NOINVERT
 END
 
 
