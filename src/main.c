@@ -652,6 +652,24 @@ HandleListViewNotifications(
 
 	switch (nmListView->hdr.code)
 	{
+	case LVN_KEYDOWN:
+		switch (((LV_KEYDOWN *) nmListView)->wVKey)
+		{
+		case VK_DELETE:
+			{
+				TCHAR szBuf[] = TEXT("Not implemented yet!");
+				TCHAR szCaption[] = TEXT("Address Book");
+				MessageBox(hWnd, szBuf, szCaption, MB_ICONWARNING | MB_OK);
+			}
+			break;
+		case VK_RETURN:
+			{
+				TCHAR szBuf[] = TEXT("Not implemented yet!");
+				TCHAR szCaption[] = TEXT("Address Book");
+				MessageBox(hWnd, szBuf, szCaption, MB_ICONWARNING | MB_OK);
+			}
+			break;
+		}
 	case NM_CLICK:
 		UpdateMenuStates();
 		break;
