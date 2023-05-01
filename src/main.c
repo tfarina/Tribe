@@ -21,6 +21,9 @@
 #define INIT_WINDOW_WIDTH  500
 #define INIT_WINDOW_HEIGHT 350
 
+/* Defines the number of columns in the contact list view */
+#define CONTACT_LIST_COLUMN_COUNT 3
+
 typedef struct _CONTACT
 {
 	TCHAR szFirstName[MAX_LOADSTRING];
@@ -345,7 +348,12 @@ CreateListView(
 {
 	LVCOLUMN lvc;
 	int iCol;
-	TCHAR szText[3][100] = {TEXT("First Name"), TEXT("Last Name"), TEXT("Email")};
+	TCHAR *szColumnLabels[CONTACT_LIST_COLUMN_COUNT] =
+	{
+		TEXT("First Name"),
+		TEXT("Last Name"),
+		TEXT("Email")
+	};
 
 	g_hwndListView = CreateWindowEx(
 		WS_EX_CLIENTEDGE,
@@ -369,10 +377,10 @@ CreateListView(
 	lvc.fmt = LVCFMT_LEFT;
 	lvc.cx = 100;
 
-	for (iCol = 0; iCol < 3; iCol++)
+	for (iCol = 0; iCol < CONTACT_LIST_COLUMN_COUNT; iCol++)
 	{
 		lvc.iSubItem = iCol;
-		lvc.pszText = szText[iCol];
+		lvc.pszText = szColumnLabels[iCol];
 		ListView_InsertColumn(g_hwndListView, iCol, &lvc);
 	}
 }
@@ -401,7 +409,7 @@ CreateToolbar(
 		(LPTSTR)NULL,     /* dummy text */
 		WS_CHILD | WS_VISIBLE | TBSTYLE_WRAPABLE,  /* style */
 		0,                /* x position */
-        0,                /* y position */
+		0,                /* y position */
 		0,                /* width */
 		0,                /* height */
 		hWndParent,
