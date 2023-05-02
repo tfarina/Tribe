@@ -35,7 +35,7 @@ typedef struct _CONTACT
 HINSTANCE g_hInst;     /* Handle to module instance */
 
 HWND g_hwndMain;         /* Handle to main window */
-HWND g_hwndStatusBar;  
+HWND g_hwndStatusBar;
 HWND g_hwndListView;
 HWND g_hwndToolbar;
 
@@ -393,7 +393,6 @@ CreateToolbar(
 {
 	HIMAGELIST hImageList = NULL;
 	int const imageListID = 0;
-	int const numButtons = 3;
 	int const bitmapSize = 24;
 
 	TBBUTTON tbButtons[] =
@@ -424,7 +423,7 @@ CreateToolbar(
 		bitmapSize,
 		bitmapSize,
 		ILC_COLOR32 | ILC_MASK,
-		numButtons,
+		0,
 		0);
 
 	/* Set the image list */
@@ -435,7 +434,7 @@ CreateToolbar(
 
 	/* Add buttons */
 	SendMessage(g_hwndToolbar, TB_BUTTONSTRUCTSIZE, (WPARAM) sizeof(TBBUTTON), 0);
-	SendMessage(g_hwndToolbar, TB_ADDBUTTONS, (WPARAM) numButtons, (LPARAM) &tbButtons);
+	SendMessage(g_hwndToolbar, TB_ADDBUTTONS, (WPARAM) sizeof(tbButtons)/sizeof(TBBUTTON), (LPARAM) &tbButtons);
 
 	/* Resize the toolbar, and then show it */
 	SendMessage(g_hwndToolbar, TB_AUTOSIZE, 0, 0);
