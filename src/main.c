@@ -25,6 +25,13 @@
 /* Defines the number of columns in the contact list view */
 #define CONTACT_LIST_COLUMN_COUNT 3
 
+typedef struct _CONTACTROW
+{
+	TCHAR *szFirstName;
+	TCHAR *szLastName;
+	TCHAR *szEmail;
+} CONTACTROW, *LPCONTACTROW;
+
 typedef struct _CONTACT
 {
 	TCHAR szFirstName[MAX_LOADSTRING];
@@ -258,45 +265,29 @@ load_contacts(
 	void
 	)
 {
-	LPCONTACT contact;
-
-	contact = LocalAlloc(LMEM_ZEROINIT, sizeof(CONTACT));
-	if (!contact)
+	int index;
+	LPCONTACT lpContact;
+	CONTACTROW aContacts[] =
 	{
-		/* Out of memory. */
-		goto exit;
-	}
-	lstrcpy(contact->szFirstName, "John");
-	lstrcpy(contact->szLastName, "Doe");
-	lstrcpy(contact->szEmail, "john_doe@mail.com");
+		{ "John", "Doe", "john_doe@mail.com" },
+		{ "Jane", "Doe", "jane_doe@mail.com" },
+		{ "John", "Smith", "john_smith@mail.com" },
+	};
 
-	contactList = alpm_list_add(contactList, contact);
-
-	contact = NULL;
-	contact = LocalAlloc(LMEM_ZEROINIT, sizeof(CONTACT));
-	if (!contact)
+	for (index = 0; index < ARRAYSIZE(aContacts); index++)
 	{
-		/* Out of memory. */
-		goto exit;
+		lpContact = LocalAlloc(LMEM_ZEROINIT, sizeof(CONTACT));
+		if (!lpContact)
+		{
+			/* Out of memory. */
+			goto exit;
+		}
+		lstrcpy(lpContact->szFirstName, aContacts[index].szFirstName);
+		lstrcpy(lpContact->szLastName, aContacts[index].szLastName);
+		lstrcpy(lpContact->szEmail, aContacts[index].szEmail);
+
+		contactList = alpm_list_add(contactList, lpContact);
 	}
-	lstrcpy(contact->szFirstName, "Jane");
-	lstrcpy(contact->szLastName, "Doe");
-	lstrcpy(contact->szEmail, "jane_doe@mail.com");
-
-	contactList = alpm_list_add(contactList, contact);
-
-	contact = NULL;
-	contact = LocalAlloc(LMEM_ZEROINIT, sizeof(CONTACT));
-	if (!contact)
-	{
-		/* Out of memory. */
-		goto exit;
-	}
-	lstrcpy(contact->szFirstName, "John");
-	lstrcpy(contact->szLastName, "Smith");
-	lstrcpy(contact->szEmail, "john_smith@mail.com");
-
-	contactList = alpm_list_add(contactList, contact);
 
 	return 0;
 
@@ -829,7 +820,7 @@ AboutDlgProc(
 			return TRUE;
 
 		case WM_COMMAND:
-			if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL) 
+			if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
 			{
 				EndDialog(hDlg, LOWORD(wParam));
 				return TRUE;
