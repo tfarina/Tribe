@@ -397,9 +397,9 @@ CreateToolbar(
 
 	TBBUTTON tbButtons[] =
 	{
-		{ MAKELONG(STD_FILENEW, imageListID), IDC_TB_NEW, TBSTATE_ENABLED, BTNS_AUTOSIZE, {0}, 0, (INT_PTR) TEXT("New") },
-		{ MAKELONG(STD_PROPERTIES, imageListID), IDC_TB_PROPERTIES, 0, BTNS_AUTOSIZE, {0}, 0, (INT_PTR) TEXT("Properties") },
-		{ MAKELONG(STD_DELETE, imageListID), IDC_TB_DELETE, 0, BTNS_AUTOSIZE, {0}, 0, (INT_PTR) TEXT("Delete") },
+		{ MAKELONG(STD_FILENEW, imageListID), IDC_TB_NEW, TBSTATE_ENABLED, BTNS_AUTOSIZE, {0}, 0, 0 },
+		{ MAKELONG(STD_PROPERTIES, imageListID), IDC_TB_PROPERTIES, 0, BTNS_AUTOSIZE, {0}, 0, 1 },
+		{ MAKELONG(STD_DELETE, imageListID), IDC_TB_DELETE, 0, BTNS_AUTOSIZE, {0}, 0, 2 },
 	};
 
 	g_hwndToolbar = CreateWindowEx(
@@ -435,6 +435,9 @@ CreateToolbar(
 	/* Add buttons */
 	SendMessage(g_hwndToolbar, TB_BUTTONSTRUCTSIZE, (WPARAM) sizeof(TBBUTTON), 0);
 	SendMessage(g_hwndToolbar, TB_ADDBUTTONS, (WPARAM) sizeof(tbButtons)/sizeof(TBBUTTON), (LPARAM) &tbButtons);
+
+	/* Add strings */
+	SendMessage(g_hwndToolbar, TB_ADDSTRING, (WPARAM) 0, (LPARAM) TEXT("New\0Properties\0Delete\0\0"));
 
 	/* Resize the toolbar, and then show it */
 	SendMessage(g_hwndToolbar, TB_AUTOSIZE, 0, 0);
