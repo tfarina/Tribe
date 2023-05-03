@@ -370,9 +370,10 @@ CreateListView(
 		g_hInst,
 		NULL);
 
+	/* Set styles */
 	ListView_SetExtendedListViewStyle(g_hwndListView, LVS_EX_FULLROWSELECT);
 
-	/* Init List View (images, columns, etc...) */
+	/* Insert columns */
 	lvc.mask = LVCF_FMT | LVCF_WIDTH | LVCF_TEXT | LVCF_SUBITEM;
 	lvc.fmt = LVCFMT_LEFT;
 	lvc.cx = 100;
