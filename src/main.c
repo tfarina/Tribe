@@ -14,6 +14,7 @@
 #include "db.h"
 #include "resource.h"
 #include "alpm_list.h"
+#include "arraysize.h"
 
 #define MAX_LOADSTRING 100
 
@@ -225,7 +226,7 @@ CreateMainWindow(
 	TCHAR szTitle[MAX_LOADSTRING];  /* Title bar text */
 	HMENU hMenu;
 
-	LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
+	LoadString(hInstance, IDS_APP_TITLE, szTitle, ARRAYSIZE(szTitle));
 
 	hMenu = LoadMenu(hInstance, MAKEINTRESOURCE(IDR_MENUBAR));
 
@@ -435,7 +436,7 @@ CreateToolbar(
 
 	/* Add buttons */
 	SendMessage(g_hwndToolbar, TB_BUTTONSTRUCTSIZE, (WPARAM) sizeof(TBBUTTON), 0);
-	SendMessage(g_hwndToolbar, TB_ADDBUTTONS, (WPARAM) sizeof(tbButtons)/sizeof(TBBUTTON), (LPARAM) &tbButtons);
+	SendMessage(g_hwndToolbar, TB_ADDBUTTONS, (WPARAM) ARRAYSIZE(tbButtons), (LPARAM) &tbButtons);
 
 	/* Add strings */
 	SendMessage(g_hwndToolbar, TB_ADDSTRING, (WPARAM) 0, (LPARAM) TEXT("New\0Properties\0Delete\0\0"));
@@ -728,7 +729,7 @@ MainWndProc(
 						TCHAR szBuf[MAX_LOADSTRING];
 						TCHAR szCaption[] = TEXT("Confirm Item Delete");
 
-						LoadString(g_hInst, IDS_CONFIRM_DELETE_ITEM_MSG, szBuf, MAX_LOADSTRING);
+						LoadString(g_hInst, IDS_CONFIRM_DELETE_ITEM_MSG, szBuf, ARRAYSIZE(szBuf));
 
 						if (MessageBox(hWnd, szBuf, szCaption, MB_ICONQUESTION | MB_YESNO) == IDYES)
 						{

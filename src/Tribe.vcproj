@@ -312,6 +312,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\arraysize.h"
+				>
+			</File>
+			<File
 				RelativePath=".\db.h"
 				>
 			</File>
