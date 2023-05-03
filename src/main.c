@@ -99,7 +99,6 @@ AboutDlgProc(
 	LPARAM
 	);
 
-
 int WINAPI
 WinMain(
 	HINSTANCE hInstance,
@@ -162,7 +161,6 @@ WinMain(
 	return msg.wParam;
 }
 
-
 /*
  *  FUNCTION: InitWindowClass()
  *
@@ -206,7 +204,6 @@ InitWindowClass(
 
 	return TRUE;
 }
-
 
 /*
  *   FUNCTION: CreateMainWindow(HANDLE, int)
@@ -255,7 +252,6 @@ CreateMainWindow(
 
 	return TRUE;
 }
-
 
 int
 load_contacts(
@@ -308,7 +304,6 @@ exit:
 	return -1;
 }
 
-
 void
 PopulateListView(
 	void
@@ -317,7 +312,7 @@ PopulateListView(
 	alpm_list_t *item;
 	LPCONTACT contact;
 	LVITEM lvI = {0};
-    int index = 0;
+	int index = 0;
 
 	load_contacts();
 
@@ -340,7 +335,6 @@ PopulateListView(
 		lvI.iItem++;
 	}
 }
-
 
 void
 CreateListView(
@@ -386,7 +380,6 @@ CreateListView(
 		ListView_InsertColumn(g_hwndListView, iCol, &lvc);
 	}
 }
-
 
 void
 CreateToolbar(
@@ -446,7 +439,6 @@ CreateToolbar(
 	ShowWindow(g_hwndToolbar, TRUE);
 }
 
-
 void
 CreateStatusBar(
 	HWND hWndParent
@@ -474,7 +466,6 @@ CreateStatusBar(
 	g_hStatus = statusBarRect.bottom - statusBarRect.top;
 }
 
-
 void
 CreateChildrenControls(
 	HWND hWndParent
@@ -489,7 +480,6 @@ CreateChildrenControls(
 	PopulateListView();
 }
 
-
 void
 AdjustChildrenControls(
 	HWND hWndParent
@@ -498,7 +488,7 @@ AdjustChildrenControls(
 	RECT rc;
 	RECT toolbarRect;
 	int tbX, tbY, tbW, tbH;
-    int statusX, statusY, statusW, statusH;
+	int statusX, statusY, statusW, statusH;
 	int lvX, lvY, lvW, lvH;
 
     GetClientRect(hWndParent, &rc);
@@ -556,7 +546,6 @@ AdjustChildrenControls(
 			   TRUE);
 }
 
-
 void
 SelectAllItems(
 	void
@@ -570,7 +559,6 @@ SelectAllItems(
 		ListView_SetItemState(g_hwndListView, i, LVIS_SELECTED, LVIS_SELECTED);
 	}
 }
-
 
 INT_PTR CALLBACK
 fnNamePageProc(
@@ -603,7 +591,6 @@ fnNamePageProc(
 	return FALSE;
 }
 
-
 static void
 ShowContactPropertiesDialog(
 	HWND hWnd
@@ -635,7 +622,6 @@ ShowContactPropertiesDialog(
 	PropertySheet(&propSheetHeader);
 }
 
-
 static void
 UpdateMenuStates(
 	void
@@ -652,7 +638,6 @@ UpdateMenuStates(
 
 	/* TODO: implement for Properties menu and toolbar button */
 }
-
 
 static void
 HandleListViewNotifications(
@@ -687,7 +672,6 @@ HandleListViewNotifications(
 		break;
 	}
 }
-
 
 /*
  *  FUNCTION: MainWndProc(HWND, unsigned, WORD, LONG)
@@ -827,7 +811,6 @@ MainWndProc(
 
    return 0;
 }
-
 
 /*
  * Mesage handler for about box.
