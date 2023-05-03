@@ -727,9 +727,10 @@ MainWndProc(
 				case IDM_DELETE:
 					{
 						TCHAR szBuf[MAX_LOADSTRING];
-						TCHAR szCaption[] = TEXT("Confirm Item Delete");
+						TCHAR szCaption[MAX_LOADSTRING];
 
 						LoadString(g_hInst, IDS_CONFIRM_DELETE_ITEM_MSG, szBuf, ARRAYSIZE(szBuf));
+						LoadString(g_hInst, IDS_CONFIRM_DELETE_ITEM_CAPTION, szCaption, ARRAYSIZE(szCaption));
 
 						if (MessageBox(hWnd, szBuf, szCaption, MB_ICONQUESTION | MB_YESNO) == IDYES)
 						{

@@ -219,6 +219,7 @@ BEGIN
     IDS_APP_TITLE           "Tribe - Address Book"
     IDS_CONFIRM_DELETE_ITEM_MSG 
                             "Are you sure you want to delete the selected item(s)?"
+    IDS_CONFIRM_DELETE_ITEM_CAPTION "Confirm Item Delete"
 END
 
 #endif    // English (U.S.) resources

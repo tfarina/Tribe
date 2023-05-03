@@ -12,6 +12,7 @@
 #define IDR_MAINWND_ACCEL               8
 #define IDS_APP_TITLE                   100
 #define IDS_CONFIRM_DELETE_ITEM_MSG     101
+#define IDS_CONFIRM_DELETE_ITEM_CAPTION 102
 #define IDD_DIALOG1                     106
 #define IDD_PROPPAGE_NAME               107
 #define IDC_LISTVIEW                    2001
