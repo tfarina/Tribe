@@ -22,6 +22,10 @@
 #define INIT_WINDOW_WIDTH  500
 #define INIT_WINDOW_HEIGHT 350
 
+/* The width and height of toolbar button images */
+#define TB_BITMAP_CX 24
+#define TB_BITMAP_CY 24
+
 /* Defines the number of columns in the contact list view */
 #define CONTACT_LIST_COLUMN_COUNT 3
 
@@ -379,7 +383,6 @@ CreateToolbar(
 {
 	HIMAGELIST hImageList = NULL;
 	int const imageListID = 0;
-	int const bitmapSize = 24;
 
 	TBBUTTON tbButtons[] =
 	{
@@ -406,8 +409,8 @@ CreateToolbar(
 		return;
 
 	hImageList = ImageList_Create(
-		bitmapSize,
-		bitmapSize,
+		TB_BITMAP_CX,
+		TB_BITMAP_CY,
 		ILC_COLOR32 | ILC_MASK,
 		0,
 		0);
