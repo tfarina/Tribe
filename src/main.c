@@ -269,16 +269,19 @@ load_contacts(
 	void
 	)
 {
-	int index;
-	LPCONTACT lpContact;
+	ULONG cContacts;
 	CONTACTROW aContacts[] =
 	{
 		{ "John", "Doe", "john_doe@mail.com" },
 		{ "Jane", "Doe", "jane_doe@mail.com" },
 		{ "John", "Smith", "john_smith@mail.com" },
 	};
+	ULONG index;
+	LPCONTACT lpContact;
 
-	for (index = 0; index < ARRAYSIZE(aContacts); index++)
+	cContacts = ARRAYSIZE(aContacts);
+
+	for (index = 0; index < cContacts; index++)
 	{
 		lpContact = LocalAlloc(LMEM_ZEROINIT, sizeof(CONTACT));
 		if (!lpContact)
