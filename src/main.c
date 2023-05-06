@@ -264,9 +264,10 @@ CreateMainWindow(
 	return TRUE;
 }
 
-int
-load_contacts(
-	void
+HRESULT
+GetContactList(
+	ULONG *pnCount,
+	CONTACTROW **ppContacts
 	)
 {
 	ULONG cContacts;
@@ -276,10 +277,56 @@ load_contacts(
 		{ "Jane", "Doe", "jane_doe@mail.com" },
 		{ "John", "Smith", "john_smith@mail.com" },
 	};
+	LPCONTACTROW lpContactList;
+	ULONG index;
+
+	if (NULL == pnCount || NULL == ppContacts)
+	{
+		return E_INVALIDARG;
+	}
+
+	cContacts = ARRAYSIZE(aContacts);
+
+	lpContactList = LocalAlloc(LMEM_ZEROINIT, cContacts * sizeof(CONTACTROW));
+	if (NULL == lpContactList)
+	{
+		return E_OUTOFMEMORY;
+	}
+
+	for (index = 0; index < cContacts; index++)
+	{
+		ULONG ulLen;
+		ulLen = lstrlen(aContacts[index].szFirstName) + 1;
+		lpContactList[index].szFirstName = malloc(ulLen * sizeof(TCHAR));
+		lstrcpy(lpContactList[index].szFirstName, aContacts[index].szFirstName);
+
+		ulLen = lstrlen(aContacts[index].szLastName) + 1;
+		lpContactList[index].szLastName = malloc(ulLen * sizeof(TCHAR));
+		lstrcpy(lpContactList[index].szLastName, aContacts[index].szLastName);
+
+		ulLen = lstrlen(aContacts[index].szEmail) + 1;
+		lpContactList[index].szEmail = malloc(ulLen * sizeof(TCHAR));
+		lstrcpy(lpContactList[index].szEmail, aContacts[index].szEmail);
+	}
+
+	*pnCount = cContacts;
+	*ppContacts = lpContactList;
+
+	return S_OK;
+}
+
+int
+load_contacts(
+	void
+	)
+{
+	HRESULT hr;
+	ULONG cContacts;
+	LPCONTACTROW lpContacts = NULL;
 	ULONG index;
 	LPCONTACT lpContact;
 
-	cContacts = ARRAYSIZE(aContacts);
+	hr = GetContactList(&cContacts, &lpContacts);
 
 	for (index = 0; index < cContacts; index++)
 	{
@@ -289,9 +336,9 @@ load_contacts(
 			/* Out of memory. */
 			goto exit;
 		}
-		lstrcpy(lpContact->szFirstName, aContacts[index].szFirstName);
-		lstrcpy(lpContact->szLastName, aContacts[index].szLastName);
-		lstrcpy(lpContact->szEmail, aContacts[index].szEmail);
+		lstrcpy(lpContact->szFirstName, lpContacts[index].szFirstName);
+		lstrcpy(lpContact->szLastName, lpContacts[index].szLastName);
+		lstrcpy(lpContact->szEmail, lpContacts[index].szEmail);
 
 		contactList = alpm_list_add(contactList, lpContact);
 	}
