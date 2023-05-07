@@ -12,6 +12,9 @@
 #undef APSTUDIO_HIDDEN_SYMBOLS
 #include "resource.h"
 
+/* Include version stamping information */
+#include "tribe.rcv"
+
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
@@ -166,8 +169,6 @@ END
 //
 
 CREATEPROCESS_MANFIEST_RESOURCE_ID RT_MANIFEST             "tribe.manifest"
-
-#define APP_STR_VERSION "0.1.0.0"
 
 /////////////////////////////////////////////////////////////////////////////
 //
