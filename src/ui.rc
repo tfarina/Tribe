@@ -165,8 +165,7 @@ END
 // RT_MANIFEST
 //
 
-IDR_RT_MANIFEST         RT_MANIFEST             "tribe.manifest"
-
+CREATEPROCESS_MANFIEST_RESOURCE_ID RT_MANIFEST             "tribe.manifest"
 
 #define APP_STR_VERSION "0.1.0.0"
 
