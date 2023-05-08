@@ -2,7 +2,6 @@
 // Microsoft Visual C++ generated include file.
 // Used by ui.rc
 //
-#define IDR_RT_MANIFEST                 1
 #define IDI_APP_ICON                    2
 #define IDD_ABOUTBOX                    3
 #define IDR_MENUBAR                     4
