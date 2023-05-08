@@ -675,12 +675,14 @@ UpdateMenuStates(
 	HMENU hMenu = GetSubMenu(GetMenu(g_hwndMain), 0);
 	BOOL canDelete = numSelected > 0 ? TRUE : FALSE;
 	UINT uFlag = canDelete ? MF_ENABLED : MF_GRAYED;
+	BOOL canEdit = numSelected == 1 ? TRUE : FALSE;
+	UINT uFlagEdit = canEdit ? MF_ENABLED : MF_GRAYED;
 
 	SendMessage(g_hwndToolbar, TB_ENABLEBUTTON, (WPARAM) IDC_TB_DELETE, (LPARAM) MAKELONG(canDelete, 0));
+	SendMessage(g_hwndToolbar, TB_ENABLEBUTTON, (WPARAM) IDC_TB_PROPERTIES, (LPARAM) MAKELONG(canEdit, 0));
 
 	EnableMenuItem(hMenu, IDM_DELETE, MF_BYCOMMAND | uFlag);
-
-	/* TODO: implement for Properties menu and toolbar button */
+	EnableMenuItem(hMenu, IDM_PROPERTIES, MF_BYCOMMAND | uFlagEdit);
 }
 
 static void
@@ -749,6 +751,15 @@ MainWndProc(
 				case IDC_TB_NEW:
 				case IDM_NEW_CONTACT:
 					ShowContactPropertiesDialog(hWnd);
+					break;
+
+				case IDC_TB_PROPERTIES:
+				case IDM_PROPERTIES:
+					{
+						TCHAR szBuf[] = TEXT("Not implemented yet!");
+						TCHAR szCaption[] = TEXT("Address Book");
+						MessageBox(hWnd, szBuf, szCaption, MB_ICONWARNING | MB_OK);
+					}
 					break;
 
 				case IDC_TB_DELETE:
