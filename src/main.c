@@ -386,6 +386,7 @@ CreateListView(
 	HWND hWndParent
 	)
 {
+	DWORD dwStyle;
 	LVCOLUMN lvc;
 	int iCol;
 	TCHAR *szColumnLabels[CONTACT_LIST_COLUMN_COUNT] =
@@ -409,6 +410,13 @@ CreateListView(
 		(HMENU) IDC_LISTVIEW,
 		g_hInst,
 		NULL);
+
+	dwStyle = GetWindowLong(g_hwndListView, GWL_STYLE);
+	if (dwStyle & LVS_EDITLABELS)
+	{
+		dwStyle &= ~LVS_EDITLABELS;
+	}
+	SetWindowLong(g_hwndListView, GWL_STYLE, dwStyle);
 
 	/* Set styles */
 	ListView_SetExtendedListViewStyle(g_hwndListView, LVS_EX_FULLROWSELECT);
