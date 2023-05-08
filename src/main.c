@@ -696,6 +696,7 @@ HandleListViewNotifications(
 	switch (nmListView->hdr.code)
 	{
 	case LVN_KEYDOWN:
+		UpdateMenuStates();
 		switch (((LV_KEYDOWN *) nmListView)->wVKey)
 		{
 		case VK_DELETE:
@@ -713,6 +714,7 @@ HandleListViewNotifications(
 			}
 			break;
 		}
+		break;
 	case NM_CLICK:
 		UpdateMenuStates();
 		break;
