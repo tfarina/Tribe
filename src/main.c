@@ -29,13 +29,6 @@
 /* Defines the number of columns in the contact list view */
 #define CONTACT_LIST_COLUMN_COUNT 3
 
-typedef struct _CONTACTROW
-{
-	TCHAR *szFirstName;
-	TCHAR *szLastName;
-	TCHAR *szEmail;
-} CONTACTROW, *LPCONTACTROW;
-
 typedef struct _CONTACT
 {
 	TCHAR szFirstName[MAX_LOADSTRING];
