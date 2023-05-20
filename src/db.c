@@ -9,7 +9,7 @@ static sqlite3 *hdb = NULL;  /* SQLite db handle */
 int
 db_init(void)
 {
-	char dbname[] = "abdb.sqlite3";
+	char const dbname[] = "abdb.sqlite3";
 	char const create_sql[] =
 		"CREATE TABLE IF NOT EXISTS contacts ("
 		"  id INTEGER PRIMARY KEY,"
