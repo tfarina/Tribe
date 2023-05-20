@@ -269,6 +269,8 @@ load_contacts(
 	LPCONTACT lpContact;
 
 	hr = GetContactList(&cContacts, &lpContacts);
+	if (FAILED(hr))
+		goto exit;
 
 	for (index = 0; index < cContacts; index++)
 	{
