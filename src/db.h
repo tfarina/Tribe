@@ -1,6 +1,7 @@
 #ifndef _DB_H_INCLUDED_
 #define _DB_H_INCLUDED_ 1
 
+#include <windows.h>
 #include <tchar.h>
 
 typedef struct _CONTACTROW
@@ -11,5 +12,11 @@ typedef struct _CONTACTROW
 } CONTACTROW, *LPCONTACTROW;
 
 int db_init(void);
+
+HRESULT
+GetContactList(
+	ULONG *pnCount,
+	CONTACTROW **ppContacts
+	);
 
 #endif  /* !defined(_DB_H_INCLUDED_) */
