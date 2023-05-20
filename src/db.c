@@ -28,10 +28,10 @@ db_init(void)
 		return -1;
 	}
 
-    rc = sqlite3_exec(hdb, create_sql, 0, 0, 0);
+    rc = sqlite3_exec(hdb, create_sql, 0, 0, &err_msg);
 	if (rc != SQLITE_OK)
 	{
-		fprintf(stderr, "sqlite3_exec failed: \n", err_msg);
+		fprintf(stderr, "sqlite3_exec failed: %s\n", err_msg);
 		sqlite3_free(err_msg);
 		return -1;
 	}
