@@ -25,6 +25,7 @@ db_init(void)
 	{
 		fprintf(stderr, "Failed to open SQLite database %s: %s\n", dbname,
 			sqlite3_errmsg(hdb));
+		sqlite3_close(hdb);
 		return -1;
 	}
 
@@ -33,6 +34,7 @@ db_init(void)
 	{
 		fprintf(stderr, "sqlite3_exec failed: %s\n", err_msg);
 		sqlite3_free(err_msg);
+		sqlite3_close(hdb);
 		return -1;
 	}
 
