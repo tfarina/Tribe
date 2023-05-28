@@ -17,6 +17,7 @@
 #include "arraysize.h"
 
 #define MAX_LOADSTRING 100
+#define MAX_EDIT_LENGTH 100
 
 /* Initial window size. */
 #define INIT_WINDOW_WIDTH  500
@@ -573,7 +574,23 @@ fnNamePageProc(
 		switch (((LPNMHDR)lParam)->code)
 		{
 		case PSN_APPLY: /* OK */
-			MessageBox(hWndDlg, szBuf, szCaption, MB_ICONWARNING | MB_OK);
+			{
+				TCHAR szFirstName[MAX_EDIT_LENGTH];
+				szFirstName[0] = '\0';
+
+				GetDlgItemText(hWndDlg, IDC_PROPPAGE_NAME_EDIT_FIRSTNAME, szFirstName, ARRAYSIZE(szFirstName));
+				if (!lstrlen(szFirstName))
+				{
+					TCHAR szMsg[MAX_LOADSTRING];
+
+					LoadString(g_hInst, IDS_NEEDS_FIRSTNAME, szMsg, ARRAYSIZE(szMsg));
+					MessageBox(hWndDlg, szMsg, szCaption, MB_ICONEXCLAMATION | MB_OK);
+					SetFocus(GetDlgItem(hWndDlg, IDC_PROPPAGE_NAME_EDIT_FIRSTNAME));
+					SetWindowLongPtr(hWndDlg, DWLP_MSGRESULT, TRUE);
+					return TRUE;
+				}
+				MessageBox(hWndDlg, szBuf, szCaption, MB_ICONWARNING | MB_OK);
+			}
 			break;
 		case PSN_RESET: /* Cancel */
 			break;

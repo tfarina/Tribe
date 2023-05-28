@@ -220,6 +220,7 @@ BEGIN
     IDS_CONFIRM_DELETE_ITEM_MSG 
                             "Are you sure you want to delete the selected item(s)?"
     IDS_CONFIRM_DELETE_ITEM_CAPTION "Confirm Item Delete"
+    IDS_NEEDS_FIRSTNAME     "Please enter the First Name."
 END
 
 #endif    // English (U.S.) resources
