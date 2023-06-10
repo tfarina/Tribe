@@ -221,6 +221,7 @@ BEGIN
                             "Are you sure you want to delete the selected item(s)?"
     IDS_CONFIRM_DELETE_ITEM_CAPTION "Confirm Item Delete"
     IDS_NEEDS_FIRSTNAME     "Please enter the First Name."
+    IDS_APP_NAME            "Tribe"
 END
 
 #endif    // English (U.S.) resources

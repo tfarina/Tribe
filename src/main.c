@@ -228,7 +228,7 @@ CreateMainWindow(
 	TCHAR szTitle[MAX_LOADSTRING];  /* Title bar text */
 	HMENU hMenu;
 
-	LoadString(hInstance, IDS_APP_TITLE, szTitle, ARRAYSIZE(szTitle));
+	LoadString(hInstance, IDS_APP_NAME, szTitle, ARRAYSIZE(szTitle));
 
 	hMenu = LoadMenu(hInstance, MAKEINTRESOURCE(IDR_MENUBAR));
 

@@ -13,6 +13,7 @@
 #define IDS_CONFIRM_DELETE_ITEM_MSG     101
 #define IDS_CONFIRM_DELETE_ITEM_CAPTION 102
 #define IDS_NEEDS_FIRSTNAME             103
+#define IDS_APP_NAME                    104
 #define IDD_DIALOG1                     106
 #define IDD_PROPPAGE_NAME               107
 #define IDC_LISTVIEW                    2001
