@@ -81,6 +81,7 @@ BEGIN
     "N",            IDM_NEW_CONTACT,        VIRTKEY, CONTROL, NOINVERT
     "A",            IDM_SELECTALL,          VIRTKEY, CONTROL, NOINVERT
     VK_F1,          IDM_HELP_CHM,           VIRTKEY, NOINVERT
+    VK_RETURN,      IDM_PROPERTIES,         VIRTKEY, ALT, NOINVERT
 END
 
 
