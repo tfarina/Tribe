@@ -28,7 +28,6 @@
 #define IDC_PROPPAGE_NAME_EDIT_EMAIL    2008
 #define IDC_PROPPAGE_NAME_STATIC_EMAIL  2009
 #define IDM_SELECTALL                   32772
-#define ID_Menu                         32773
 #define IDM_NEW_CONTACT                 32774
 #define ID_FILE_PROPERTIES              32777
 #define IDM_PROPERTIES                  32778
